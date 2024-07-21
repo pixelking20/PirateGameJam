@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
         GetInput();
         transform.Rotate(new Vector3(0, input.x * rotationSpeed, 0));
         controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
+        CheckForAvailableInteraction();
     }
 
     void LateUpdate() {
@@ -47,5 +48,10 @@ public class PlayerController : MonoBehaviour
             print(hit.point);
             transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
         }
+    }
+
+    void CheckForAvailableInteraction() {
+        Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.green);
+        //either ray or spherecast, i'm just putting this here as the placeholder of where interaction code would be placed.
     }
 }
