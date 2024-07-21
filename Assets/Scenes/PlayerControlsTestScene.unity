@@ -211,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5981262833442259226, guid: 428eaaa02cb1b9b4fa1a6fa4d56f7b66, type: 3}
       propertyPath: rotationSpeed
-      value: 0.2
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 5981262833442259226, guid: 428eaaa02cb1b9b4fa1a6fa4d56f7b66, type: 3}
       propertyPath: floorMask.m_Bits
