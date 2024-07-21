@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void SnapToGround() {
-        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f)) {
+        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f, floorMask)) {
             print(hit.point);
             transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
         }
