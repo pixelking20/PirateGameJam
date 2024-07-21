@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 2.5f;
     public float rotationSpeed = 0.5f;
 
-    Vector3 inputState;
+    [Tooltip("Floor Layer")]
+    [SerializeField] LayerMask floorMask;
+
+    Vector3 input;
 
     CharacterController controller;
 
@@ -21,24 +24,28 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        GetInputState();
-        print(inputState);
-        transform.Rotate(new Vector3(0, inputState.x * rotationSpeed, 0));
-        controller.Move(transform.forward * inputState.z * moveSpeed * Time.deltaTime);
+        GetInput();
+        transform.Rotate(new Vector3(0, input.x * rotationSpeed, 0));
+        controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
     }
 
-    Vector3 GetInputState() {
+    void LateUpdate() {
+        SnapToGround();
+    }
 
-        bool upHeld = InputHandler.GetInput(Inputs.Up, ButtonInfo.Held);
-        bool downHeld = InputHandler.GetInput(Inputs.Down, ButtonInfo.Held);
-        bool leftHeld = InputHandler.GetInput(Inputs.Left, ButtonInfo.Held);
-        bool rightHeld = InputHandler.GetInput(Inputs.Right, ButtonInfo.Held);
+    Vector3 GetInput() {
+        float forward = InputHandler.GetYAxis();
+        float side = InputHandler.GetXAxis();
 
-        float forward = (upHeld ? 1 : 0) - (downHeld ? 1 : 0);
-        float side = (rightHeld ? 1 : 0) - (leftHeld ? 1 : 0);
+        input = new Vector3(side,0,forward);
 
-        inputState = new Vector3(side,0,forward);
+        return input.normalized;
+    }
 
-        return inputState.normalized;
+    void SnapToGround() {
+        if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f)) {
+            print(hit.point);
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+        }
     }
 }

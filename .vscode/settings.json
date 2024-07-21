@@ -56,5 +56,8 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "PirateGameJam.sln"
+    "dotnet.defaultSolution": "PirateGameJam.sln",
+    "cSpell.words": [
+        "Raycast"
+    ]
 }
