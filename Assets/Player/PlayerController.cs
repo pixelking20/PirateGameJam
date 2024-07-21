@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float moveSpeed = 2.5f;
-    public float rotationSpeed = 0.5f;
+    public float rotationSpeed = 200f;
 
     [Tooltip("Floor Layer")]
     [SerializeField] LayerMask floorMask;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInput();
-        transform.Rotate(new Vector3(0, input.x * rotationSpeed, 0));
+        transform.Rotate(new Vector3(0, input.x * rotationSpeed * Time.deltaTime, 0));
         controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
         CheckForAvailableInteraction();
     }
