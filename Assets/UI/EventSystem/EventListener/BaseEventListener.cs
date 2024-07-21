@@ -13,10 +13,14 @@ namespace CustomUIEvents.Listeners
         [SerializeField]
         private UIEventTypes eventType;
 
+        //used to keep track of which to event to unsubscribe to
+        private bool isEntireEvent = false;
+
         public void Start()
         {
             if (string.IsNullOrEmpty(eventID)) {
                 UIEventManager.Instance.SubscribeToEntireEvent(eventType, UIEventFiredFromType);
+                isEntireEvent = true;
             }
             else
             {
@@ -33,6 +37,18 @@ namespace CustomUIEvents.Listeners
         public virtual void UIEventFiredFromID(EventArgs eventData)
         {
 
+        }
+
+        public void OnDestroy()
+        {
+            if (isEntireEvent)
+            {
+                UIEventManager.Instance.UnsubscribeFromEntireEvent(eventType, UIEventFiredFromType);
+            }
+            else
+            {
+                UIEventManager.Instance.UnsubscribeFromIDedEvent(eventType, eventID, UIEventFiredFromID);
+            }
         }
     }
 }
