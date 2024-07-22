@@ -14,7 +14,7 @@ public class DialogueBox : MonoBehaviour
     Image profileSlot;
     AudioSource speaker;
 
-    Vector3 shownPosition, collapsedPosition;
+    Transform shownPositionHolder, collapsedPositionHolder;
     float collapseTime = .25f;
 
     private void Awake()
@@ -25,11 +25,14 @@ public class DialogueBox : MonoBehaviour
         }
         instance = this;
         speaker = GetComponent<AudioSource>();
-        shownPosition = transform.position;
-        Transform collapsedPositionHolder = transform.Find("CollapsedPositionHolder");
-        collapsedPosition = collapsedPositionHolder.position;
-        Destroy(collapsedPositionHolder.gameObject);
-        transform.position = collapsedPosition;
+
+        shownPositionHolder = transform.Find("ShownPositionHolder");
+        shownPositionHolder.SetParent(transform.parent);
+
+        collapsedPositionHolder = transform.Find("CollapsedPositionHolder");
+        collapsedPositionHolder.SetParent(transform.parent);
+
+        transform.position = collapsedPositionHolder.position;
     }
 
     public void LoadDialogueInfo(Dialogue dialogue)
@@ -125,7 +128,7 @@ public class DialogueBox : MonoBehaviour
         float timeElapsed = 0;
         while(timeElapsed < collapseTime)
         {
-            transform.position = Vector3.Lerp(shownPosition, collapsedPosition, timeElapsed / collapseTime);
+            transform.position = Vector3.Lerp(shownPositionHolder.position, collapsedPositionHolder.position, timeElapsed / collapseTime);
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -135,7 +138,7 @@ public class DialogueBox : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < collapseTime)
         {
-            transform.position = Vector3.Lerp(collapsedPosition, shownPosition, timeElapsed / collapseTime);
+            transform.position = Vector3.Lerp(collapsedPositionHolder.position, shownPositionHolder.position, timeElapsed / collapseTime);
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
