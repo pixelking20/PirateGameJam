@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Floor Layer")]
     [SerializeField] LayerMask floorMask;
 
+    [Tooltip("Interaction Layer")]
+    [SerializeField] LayerMask interactionMask;
+
     Vector3 input;
 
     CharacterController controller;
@@ -27,7 +30,13 @@ public class PlayerController : MonoBehaviour
         GetInput();
         transform.Rotate(new Vector3(0, input.x * rotationSpeed * Time.deltaTime, 0));
         controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
-        CheckForAvailableInteraction();
+
+        bool interactPressed = InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press); //Can Check if any button was pressed, released, or held this frame.
+
+        if (interactPressed)
+        {
+            CheckForAvailableInteraction();
+        }
     }
 
     void LateUpdate() {
@@ -45,13 +54,14 @@ public class PlayerController : MonoBehaviour
 
     void SnapToGround() {
         if(Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 2f, floorMask)) {
-            print(hit.point);
             transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
         }
     }
 
     void CheckForAvailableInteraction() {
         Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.green);
-        //either ray or spherecast, i'm just putting this here as the placeholder of where interaction code would be placed.
+        if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1.5f, interactionMask)) {
+            hit.transform.gameObject.SendMessage("Interact");
+        }
     }
 }
