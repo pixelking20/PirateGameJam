@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DayOne
   m_EditorClassIdentifier: 
   Block:
-  - Assets/Scenes/SampleScene.unity
+  - Assets/Scenes/PlayerControlsTestScene.unity
