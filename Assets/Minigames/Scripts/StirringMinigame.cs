@@ -130,7 +130,7 @@ public class StirringMinigame : Minigame
             if (currentRPSSample == previousSample)
             {
                 stillStrikes++;
-                if (stillStrikes > 2)
+                if (stillStrikes > 5)
                 {
                     RPSSamples = new float[RPSSamplesLength];
                 }
