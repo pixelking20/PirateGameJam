@@ -8,6 +8,9 @@ namespace Ingredients
     public class PotionEntry : ScriptableObject
     {
         [SerializeField]
+        public string PotionName;
+
+        [SerializeField]
         public IngredientEntry[] IngredientList;
     }
 }

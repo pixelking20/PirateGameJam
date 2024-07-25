@@ -4,27 +4,44 @@ using UnityEngine;
 
 namespace Ingredients
 {
+    //used as a return type for the collection method
+    public enum IngredientCollectionReturnTypes
+    {
+        Collected = 0,
+        AlreadyCollected = 1,
+        NotNeeded = 2
+    }
+
     public class IngredientManager : MonoBehaviour
     {
 
         private RecipeSheet currentRecipeSheet;
 
         private Dictionary<IngredientsEnum, bool> QuickIngredientValidation;
-        public static IngredientManager instance
+
+        public static IngredientManager Instance
         {
             get;
 
             private set;
         }
+
+        public bool FullyCollected
+        {
+            get;
+
+            private set;
+        }
+
         private void Awake()
         {
-            if (instance != null)
+            if (Instance != null)
             {
                 Debug.Log("An Instance of this manager already exists");
                 Destroy(this);
             }
 
-            instance = this;
+            Instance = this;
 
             QuickIngredientValidation = new Dictionary<IngredientsEnum, bool>();
         }
@@ -75,6 +92,9 @@ namespace Ingredients
                     //Set validation to true for next time the ingredient is called
                     QuickIngredientValidation[ingredientType] = true;
 
+                    //check if all ingredients have been collected
+                    FullyCollected = checkTotalCollection();
+
                     //loop through the RecipeSheet and set each ingredient of the type to true
                     //this allows multiple potions to use the same ingredient on the same day
                     for (int i = 0; i < currentRecipeSheet.Potions.Length; i++)
@@ -103,11 +123,20 @@ namespace Ingredients
             }
         }
 
-        public enum IngredientCollectionReturnTypes
+        
+
+        private bool checkTotalCollection()
         {
-            Collected = 0,
-            AlreadyCollected = 1,
-            NotNeeded = 2
+            foreach (bool collectedValues in QuickIngredientValidation.Values)
+            {
+                //explicit false comparrision to make it more readable
+                if (collectedValues == false) {
+                    return false;
+                }
+            }
+
+            //if none were false to exit early, than all are collected
+            return true;
         }
     }
 }
