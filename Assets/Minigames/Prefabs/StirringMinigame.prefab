@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 5493541106546970489}
   - component: {fileID: 8394183569095428866}
   - component: {fileID: 8942367293882611089}
-  - component: {fileID: 6305359768324186148}
+  - component: {fileID: 1025961904768789524}
   m_Layer: 0
   m_Name: Spoon
   m_TagString: Untagged
@@ -258,7 +258,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &6305359768324186148
+--- !u!114 &1025961904768789524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438502638465812366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115c2e79a9d5ed446b1d5a1ed80362fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9c61ee9dbdff4984eaf4cdf144aef6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playArea: {fileID: 7681416962414400521}
@@ -632,12 +632,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameCamera: {fileID: 5674473351571761682}
   miniGameTime: 10
-  tool: {fileID: 6305359768324186148}
   cauldron: {fileID: 7681416962414400521}
   successTextBox: {fileID: 595725300711514712}
   clockText: {fileID: 2825665467833267107}
-  minRPS: 1.5
-  maxRPS: 2.5
+  minRPS: 1
+  maxRPS: 2
   maxOutsideRangeTime: 3
 --- !u!1 &5693279220679085891
 GameObject:

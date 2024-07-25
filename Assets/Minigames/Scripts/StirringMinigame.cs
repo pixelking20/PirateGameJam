@@ -55,7 +55,7 @@ public class StirringMinigame : Minigame
         {
             clockText.text = (Mathf.Round((miniGameTime - timeElapsed)*10f)/10f).ToString();
             timeElapsed += Time.deltaTime;
-            indicatorBar.SetShownValue(RPS,.25f);
+            
             if (RPS < minRPS || RPS > maxRPS)
             {
                 if (RPS < minRPS)
@@ -98,6 +98,7 @@ public class StirringMinigame : Minigame
         void OnRPSReport(float rps)
         {
             RPS = rps;
+            indicatorBar.SetShownValue(RPS, .25f);
         }
     }
     void StartGame()
@@ -115,7 +116,7 @@ public class StirringMinigame : Minigame
 
     IEnumerator CalculateDynamicRPS()
     {
-        int RPSSamplesLength = 4;
+        int RPSSamplesLength = 10;
         float perfectRPS = Mathf.Lerp(minRPS, maxRPS, .5f);
         float[] RPSSamples = new float[RPSSamplesLength];
         for (int i = 0; i < RPSSamples.Length; i++)
@@ -142,7 +143,7 @@ public class StirringMinigame : Minigame
 
             previousSample = currentRPSSample;
 
-            yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.1f);
             currentRPSReport?.Invoke(CalculateRPSAverage(RPSSamples));
         }
     }
