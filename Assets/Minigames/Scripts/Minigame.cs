@@ -6,6 +6,8 @@ public abstract class Minigame : MonoBehaviour
 {
     [SerializeField]
     protected Camera miniGameCamera;
+    [SerializeField]
+    protected float miniGameTime = 10f;
 
     public delegate void OnMinigameComplete(bool success);
     public OnMinigameComplete onMinigameComplete;
@@ -13,12 +15,13 @@ public abstract class Minigame : MonoBehaviour
     public static bool minigameRunning;
     protected bool thisMiniGameRunning;
 
-    [SerializeField] Tool tool;
+    protected Tool tool;
     bool toolPickedUp = false;
 
     private void Awake()
     {
-        tool.onClick += OnToolPickup;
+        tool = GetComponentInChildren<Tool>();
+        tool.onPickup += OnToolPickup;
         OnAwake();
     }
     protected abstract void OnAwake();
@@ -89,8 +92,12 @@ public abstract class Minigame : MonoBehaviour
         toolPickedUp = false;
     }
     protected abstract void OnCloseMiniGame(bool success);
-    void OnToolPickup()
+    protected void OnToolPickup()
     {
         toolPickedUp = true;
+    }
+    public bool GetMinigameRunning()
+    {
+        return thisMiniGameRunning;
     }
 }
