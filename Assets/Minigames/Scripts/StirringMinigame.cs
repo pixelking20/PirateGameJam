@@ -9,8 +9,7 @@ public class StirringMinigame : Minigame
 {
     [SerializeField]
     Cauldron cauldron;
-    [SerializeField]
-    float miniGameTime = 10f;
+
     Vector3 stirPoint;
     float currentRPSSample;
     bool mouseOver;
@@ -222,6 +221,7 @@ public class StirringMinigame : Minigame
     }
     protected override IEnumerator WaitForGameEnd()
     {
+        yield return new WaitForEndOfFrame();
         while (!InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press))
         {
             yield return new WaitForEndOfFrame();

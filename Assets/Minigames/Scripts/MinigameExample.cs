@@ -9,7 +9,7 @@ public class MinigameExample : MonoBehaviour
     Minigame minigame;
     private void Update()
     {
-        if (InputHandler.GetInput(Inputs.Interact,ButtonInfo.Press))
+        if (!Minigame.minigameRunning && InputHandler.GetInput(Inputs.Interact,ButtonInfo.Press))
         {
             minigame.InitializeMiniGame();
             minigame.onMinigameComplete += OnMinigameComplete;

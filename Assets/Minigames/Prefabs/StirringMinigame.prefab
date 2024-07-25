@@ -349,7 +349,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: '
+
+'
 --- !u!1 &2868394999783875425
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,9 +631,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   miniGameCamera: {fileID: 5674473351571761682}
+  miniGameTime: 10
   tool: {fileID: 6305359768324186148}
   cauldron: {fileID: 7681416962414400521}
-  miniGameTime: 10
   successTextBox: {fileID: 595725300711514712}
   clockText: {fileID: 2825665467833267107}
   minRPS: 1.5
@@ -887,7 +889,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 5674473351571761682}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
