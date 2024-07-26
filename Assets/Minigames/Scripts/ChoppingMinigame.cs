@@ -25,6 +25,15 @@ public class ChoppingMinigame : Minigame
         
     }
 
+    protected override void OnPrepareMiniGame()
+    {
+        timer.Disable();
+    }
+
+    protected override void OnMinigameLoad()
+    {
+
+    }
     protected override void OnCloseMiniGame(bool success)
     {
         DestroyAllTargets(chopTargets);
@@ -106,4 +115,5 @@ public class ChoppingMinigame : Minigame
             yield return new WaitForEndOfFrame();
         }
     }
+
 }
