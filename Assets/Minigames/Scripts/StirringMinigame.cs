@@ -24,24 +24,24 @@ public class StirringMinigame : Minigame
     [SerializeField]
     float minRPS=.5f, maxRPS=1.5f, maxOutsideRangeTime=3f;
     IndicatorBar indicatorBar;
+    
 
     protected override void OnAwake()
     {
+
         cauldron.mouseOverStateChange += OnMouseOverCauldronStateChange;
         indicatorBar = GetComponentInChildren<IndicatorBar>();
         indicatorBar.Initialize();
         indicatorBar.SetGoodRange(minRPS, maxRPS);
     }
-    protected override void PrepareMiniGame()
+    protected override void OnPrepareMiniGame()
     {
-        base.PrepareMiniGame();
         cauldron.SetPotionStatus(PotionStatus.Good);
         indicatorBar.SetShownValue(Mathf.Lerp(minRPS, maxRPS, .5f),0);
         clockText.text = miniGameTime.ToString();
     }
     protected override void OnMinigameLoad()
     {
-        base.OnMinigameLoad();
         stirPoint = miniGameCamera.WorldToScreenPoint(cauldron.transform.position);
     }
     protected override IEnumerator RunGame()
@@ -55,7 +55,7 @@ public class StirringMinigame : Minigame
         {
             clockText.text = (Mathf.Round((miniGameTime - timeElapsed)*10f)/10f).ToString();
             timeElapsed += Time.deltaTime;
-            
+            timer.SetTimer(miniGameTime, miniGameTime - timeElapsed);
             if (RPS < minRPS || RPS > maxRPS)
             {
                 if (RPS < minRPS)
@@ -130,7 +130,7 @@ public class StirringMinigame : Minigame
             if (currentRPSSample == previousSample)
             {
                 stillStrikes++;
-                if (stillStrikes > 5)
+                if (stillStrikes > RPSSamplesLength/2)
                 {
                     RPSSamples = new float[RPSSamplesLength];
                 }

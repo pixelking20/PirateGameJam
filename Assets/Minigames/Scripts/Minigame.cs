@@ -18,10 +18,13 @@ public abstract class Minigame : MonoBehaviour
     protected Tool tool;
     bool toolPickedUp = false;
 
+    protected Timer timer;
     private void Awake()
     {
         tool = GetComponentInChildren<Tool>();
         tool.onPickup += OnToolPickup;
+        timer = GetComponentInChildren<Timer>();
+        timer.SetTimer(miniGameTime, miniGameTime);
         OnAwake();
     }
     protected abstract void OnAwake();
@@ -44,18 +47,23 @@ public abstract class Minigame : MonoBehaviour
         miniGameCamera.enabled = true;
 
         yield return TransitionCurtains.Transition(true);
-        OnMinigameLoad();
+        MinigameLoad();
         yield return WaitForGameStart();
         yield return RunGame();
     }
-    protected virtual void PrepareMiniGame()
+    void PrepareMiniGame()
     {
         tool.ResetTool();
+        timer.SetTimer(miniGameTime, miniGameTime);
+        OnPrepareMiniGame();
     }
-    protected virtual void OnMinigameLoad()
+    protected abstract void OnPrepareMiniGame();
+    void MinigameLoad()
     {
         tool.SetPickupable(true);
+        OnMinigameLoad();
     }
+    protected abstract void OnMinigameLoad();
     IEnumerator WaitForGameStart()
     {
         while (!toolPickedUp)
