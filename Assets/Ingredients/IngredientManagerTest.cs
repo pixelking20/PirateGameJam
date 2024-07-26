@@ -19,7 +19,7 @@ public class IngredientManagerTest : MonoBehaviour
 
         /*Debug.Log($"The value of FullyCollected: {IngredientManager.Instance.FullyCollected}");
 
-        Debug.Log($"The cross Script collection value is : {sampleSheet.Potions[0].IngredientList[0].collected}");
+        Debug.Log($"The cross Script collection value is : {sampleSheet.Potions[0].IngredientList[0].collected}");+
 
         lastCollectionResult = IngredientManager.Instance.CollectIngredient(IngredientsEnum.HeartyTomatoes);
 
@@ -50,7 +50,11 @@ public class IngredientManagerTest : MonoBehaviour
         Debug.Log($"The value of FullyCollected: {IngredientManager.Instance.FullyCollected}");
         */
 
+        // foreach(PotionEntry potion in IngredientManager.Instance.GetRecipeSheet().Potions){
+        //         foreach(IngredientEntry ingredient in potion.IngredientList) {
+        //             print(ingredient.FormatIngredientEntry());
+        //     }
+        // }
     }
 
-    
 }
