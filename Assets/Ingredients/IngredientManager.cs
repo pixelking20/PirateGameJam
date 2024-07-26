@@ -73,6 +73,10 @@ namespace Ingredients
             }
         }
 
+        public RecipeSheet GetRecipeSheet() {
+            return currentRecipeSheet;
+        }
+
         /// <summary>
         /// Call this to trigger the collection of an ingredient
         /// </summary>
@@ -115,7 +119,6 @@ namespace Ingredients
                     //returns after collection logic is complete
                     return IngredientCollectionReturnTypes.Collected;
                 }
-                
             }
             else
             {
@@ -123,13 +126,12 @@ namespace Ingredients
             }
         }
 
-        
 
         private bool checkTotalCollection()
         {
             foreach (bool collectedValues in QuickIngredientValidation.Values)
             {
-                //explicit false comparrision to make it more readable
+                //explicit false comparison to make it more readable
                 if (collectedValues == false) {
                     return false;
                 }

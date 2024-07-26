@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ingredients;
 
 public class IngredientSource : Interactable
 {
-    public GameObject ingredient;
+    public IngredientsEnum ingredient;
 
     public override void Interact() {
-        print("I gotta give you an ingredient!");
+        print("Wowee, an ingredient!");
+        IngredientManager.Instance.CollectIngredient(ingredient);
+        RecipeManager.instance.updateUI();
     }
 }
