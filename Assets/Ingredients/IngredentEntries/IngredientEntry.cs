@@ -22,9 +22,16 @@ namespace Ingredients
 
         public bool collected;
 
+        [SerializeField]
+        GameObject prefab;
+
         public string FormatIngredientEntry()
         {
             return $"{Name} {Description} - {Room}";
+        }
+        public GameObject GetPrefab()
+        {
+            return prefab;
         }
     }
 }

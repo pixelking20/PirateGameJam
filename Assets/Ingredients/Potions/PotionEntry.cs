@@ -12,5 +12,14 @@ namespace Ingredients
 
         [SerializeField]
         public IngredientEntry[] IngredientList;
+
+        public IngredientEntry[] GetIngredients()
+        {
+            IngredientEntry[] xerox = new IngredientEntry[IngredientList.Length];
+
+            IngredientList.CopyTo(xerox, 0);
+
+            return xerox;
+        }
     }
 }
