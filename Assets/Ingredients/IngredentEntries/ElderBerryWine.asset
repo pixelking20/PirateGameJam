@@ -17,3 +17,4 @@ MonoBehaviour:
   Description: To ease the pain
   Room: TestRoom
   collected: 0
+  prefab: {fileID: 5747748909938978664, guid: 0b7dbccca622dd54a8c508cb1a22a9be, type: 3}
