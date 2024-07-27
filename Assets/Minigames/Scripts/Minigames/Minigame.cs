@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Minigame : MonoBehaviour
 {
-    [SerializeField]
     protected Camera miniGameCamera;
     [SerializeField]
     protected float miniGameTime = 10f;
@@ -21,8 +20,10 @@ public abstract class Minigame : MonoBehaviour
     protected Timer timer;
     private void Awake()
     {
+        miniGameCamera = GetComponentInChildren<Camera>();
         tool = GetComponentInChildren<Tool>();
         tool.onPickup += OnToolPickup;
+        tool.Initialize();
         timer = GetComponentInChildren<Timer>();
         timer.SetTimer(miniGameTime, miniGameTime);
         OnAwake();

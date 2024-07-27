@@ -12,7 +12,7 @@ public abstract class Tool : MonoBehaviour
     public delegate void OnPickup();
     public OnPickup onPickup;
 
-    private void Awake()
+    public void Initialize()
     {
         minigame = GetComponentInParent<Minigame>();
         gameCam = minigame.GetCamera();
