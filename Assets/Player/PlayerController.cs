@@ -64,4 +64,8 @@ public class PlayerController : MonoBehaviour
             hit.transform.gameObject.SendMessage("Interact");
         }
     }
+    public void GetHitByShadowMonster()
+    {
+        print("Got hit by shadow monster");
+    }
 }
