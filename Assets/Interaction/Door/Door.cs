@@ -7,11 +7,7 @@ public class Door : Interactable
 {
     bool open = false;
 
-    Animator animator;
-
-    private void Start() {
-        animator = GetComponent<Animator>();
-    }
+    public Animator animator;
 
     private void Update() {
         animator.SetBool("IsOpen" , open);

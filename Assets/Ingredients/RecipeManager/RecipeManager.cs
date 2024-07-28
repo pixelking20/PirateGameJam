@@ -41,7 +41,7 @@ public class RecipeManager : MonoBehaviour
                 if(!neededIngredients.Contains(ingredient)) {
                     neededIngredients.Add(ingredient);
                     GameObject tempIngredientPrefab = Instantiate(textPrefab, ingredientPanel.transform);
-                    tempIngredientPrefab.GetComponent<TextMeshProUGUI>().text = ingredient.FormatIngredientEntry();
+                    tempIngredientPrefab.GetComponent<TextMeshProUGUI>().text = ingredient.name;
                     ingredientDict.Add(ingredient.Type, tempIngredientPrefab);
                 }
             }
