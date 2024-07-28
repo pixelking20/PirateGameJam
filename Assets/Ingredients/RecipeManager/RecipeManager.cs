@@ -16,6 +16,7 @@ public class RecipeManager : MonoBehaviour
     private IngredientCollectionReturnTypes lastCollectionResult;
 
     private List<IngredientEntry> neededIngredients = new List<IngredientEntry>();
+    private GameObject[] sourceList;
 
     public static RecipeManager instance;
     private void Awake()
@@ -29,10 +30,10 @@ public class RecipeManager : MonoBehaviour
 
     void Start()
     {
+        sourceList = GameObject.FindGameObjectsWithTag("IngredientSource");
         ingredientPanel = GameObject.FindGameObjectWithTag("IngredientList");
         IngredientManager.Instance.SetRecipeList(recipeSheet);
         loadNeededIngredients();
-        print(ingredientDict);
     }
 
     public void loadNeededIngredients() {
@@ -41,8 +42,13 @@ public class RecipeManager : MonoBehaviour
                 if(!neededIngredients.Contains(ingredient)) {
                     neededIngredients.Add(ingredient);
                     GameObject tempIngredientPrefab = Instantiate(textPrefab, ingredientPanel.transform);
-                    tempIngredientPrefab.GetComponent<TextMeshProUGUI>().text = ingredient.name;
+                    tempIngredientPrefab.GetComponent<TextMeshProUGUI>().text = (" • " + ingredient.Name + " - " + ingredient.Description);
                     ingredientDict.Add(ingredient.Type, tempIngredientPrefab);
+                }
+                foreach(GameObject source in sourceList) {
+                    if(source.GetComponent<IngredientSource>().ingredient == ingredient.Type) {
+                        source.GetComponent<IngredientSource>().highlightParticles.Play();
+                    }
                 }
             }
         }
