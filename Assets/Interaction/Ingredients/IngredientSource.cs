@@ -6,6 +6,7 @@ using Ingredients;
 public class IngredientSource : Interactable
 {
     public IngredientsEnum ingredient;
+    public ParticleSystem highlightParticles;
 
     public override void Interact() {
         // print("Wowee, an ingredient!");

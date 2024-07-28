@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 0
   Name: Two-Leafed Clover
-  Description: To show an unual pair
+  Description: To show an unusual pair
   Room: TestRoom2
   collected: 0
   prefab: {fileID: 2790503245168600059, guid: 3e13e6c7f2c650e48b93acdccf05cbea, type: 3}
