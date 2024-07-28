@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
     void CheckForAvailableInteraction() {
         Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.green);
         if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1.5f, interactionMask)) {
-            print("found something");
             hit.transform.gameObject.SendMessage("Interact");
         }
     }

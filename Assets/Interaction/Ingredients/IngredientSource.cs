@@ -8,8 +8,8 @@ public class IngredientSource : Interactable
     public IngredientsEnum ingredient;
 
     public override void Interact() {
-        print("Wowee, an ingredient!");
+        // print("Wowee, an ingredient!");
         IngredientManager.Instance.CollectIngredient(ingredient);
-        RecipeManager.instance.updateUI();
+        RecipeManager.instance.updateUI(ingredient);
     }
 }

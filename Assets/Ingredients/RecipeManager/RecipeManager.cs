@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ingredients;
+using TMPro;
+using System;
 
 public class RecipeManager : MonoBehaviour
 {
-    [SerializeField]
     public RecipeSheet recipeSheet;
+
+    public GameObject ingredientPanel;
+    private Dictionary<IngredientsEnum, GameObject> ingredientDict = new Dictionary<IngredientsEnum, GameObject>();
+    public GameObject textPrefab;
 
     private IngredientCollectionReturnTypes lastCollectionResult;
 
@@ -24,23 +29,26 @@ public class RecipeManager : MonoBehaviour
 
     void Start()
     {
+        ingredientPanel = GameObject.FindGameObjectWithTag("IngredientList");
         IngredientManager.Instance.SetRecipeList(recipeSheet);
         loadNeededIngredients();
+        print(ingredientDict);
     }
 
     public void loadNeededIngredients() {
         foreach(PotionEntry potion in recipeSheet.Potions) {
             foreach(IngredientEntry ingredient in potion.IngredientList) {
                 if(!neededIngredients.Contains(ingredient)) {
-                    print("HERE");
                     neededIngredients.Add(ingredient);
+                    GameObject tempIngredientPrefab = Instantiate(textPrefab, ingredientPanel.transform);
+                    tempIngredientPrefab.GetComponent<TextMeshProUGUI>().text = ingredient.FormatIngredientEntry();
+                    ingredientDict.Add(ingredient.Type, tempIngredientPrefab);
                 }
             }
         }
     }
 
     public void displayNeededIngredients() {
-        print("INGREDIENTS NEEDED");
         if(IngredientManager.Instance.FullyCollected) {
             print("Fully collected!");
         } else {
@@ -56,7 +64,9 @@ public class RecipeManager : MonoBehaviour
         print(IngredientManager.Instance.FullyCollected);
     }
 
-    public void updateUI() {
-        print("UPDATE UI");
+    public void updateUI(IngredientsEnum name) {
+        if(ingredientDict.ContainsKey(name)){
+            ingredientDict[name].GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+        }
     }
 }
