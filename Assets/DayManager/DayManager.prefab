@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8743131245510420220}
+  - component: {fileID: 5973827073281245334}
+  - component: {fileID: 6870607343594527727}
   m_Layer: 0
   m_Name: DayManager
   m_TagString: Untagged
@@ -31,3 +33,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5973827073281245334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906279673590119396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98ccae1b22365448829a5f5cb032bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RecipeList:
+  - {fileID: 11400000, guid: b56846f743e35734781a652b36c394df, type: 2}
+  - {fileID: 11400000, guid: 3067282052fd82d4d863bb666987a4c0, type: 2}
+  - {fileID: 11400000, guid: 9d3fb6fa5a39be04b8163833150e7851, type: 2}
+  - {fileID: 11400000, guid: c5b37c28a92cb9d4f83d41e632a55ce4, type: 2}
+--- !u!114 &6870607343594527727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4906279673590119396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e724d555fd103604396ee2b42a201bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

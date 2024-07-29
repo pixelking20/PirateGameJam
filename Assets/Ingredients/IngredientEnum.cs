@@ -20,7 +20,7 @@ namespace Ingredients
         TwistedTwoLeafedClover,
         TwistedFirstFallenRain,
         TwistedElderBerryWine,
-        ChildsFinalDoll
-
+        ChildsFinalDoll,
+        GoToDog
     }
 }

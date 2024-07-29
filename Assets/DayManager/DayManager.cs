@@ -1,3 +1,4 @@
+using Ingredients;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,6 +21,10 @@ namespace DayProgress
 
             private set;
         }
+
+        public RecipeSheet[] RecipeList;
+
+
         // Start is called before the first frame update
         void Awake()
         {
@@ -40,6 +45,16 @@ namespace DayProgress
         public void NextDay()
         {
             DayNumber++;
+
+            //call scene load
         }
+
+        public void SetDayRecipe()
+        {
+            RecipeManager.instance.recipeSheet = RecipeList[DayNumber];
+            RecipeManager.instance.loadNeededIngredients();
+            IngredientManager.Instance.SetRecipeList(RecipeList[DayNumber]);
+        }
+
     }
 }
