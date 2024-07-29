@@ -9,9 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc746302a99585741ab6651cc72b3847, type: 3}
-  m_Name: SampleSheet
+  m_Script: {fileID: 11500000, guid: a9713c684d9489445b4a16e1ba266d5e, type: 3}
+  m_Name: HalfOfAUsedTop
   m_EditorClassIdentifier: 
-  Potions:
-  - {fileID: 11400000, guid: 41e7dfc6753fd3542a896144e67a81a2, type: 2}
-  - {fileID: 11400000, guid: 20c636dbace4e454baffd8dd32f7d3cb, type: 2}
+  Type: 9
+  AlwaysCollected: 0
+  Name: Half of a Used Top
+  Description: 
+  Room: 
+  collected: 0
+  prefab: {fileID: 0}

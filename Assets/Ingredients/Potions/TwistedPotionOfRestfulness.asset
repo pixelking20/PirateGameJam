@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d5773df82dcab408bb834f5288397d, type: 3}
+  m_Name: TwistedPotionOfRestfulness
+  m_EditorClassIdentifier: 
+  PotionName: Potion of restfulness
+  IngredientList:
+  - {fileID: 11400000, guid: 9e2003369f98e3b438e17239220583c3, type: 2}
+  - {fileID: 11400000, guid: 91c4bf61a1e88ea4d94e4e885592de3e, type: 2}
+  - {fileID: 11400000, guid: f5dd30943b9a8c343a37c6b95b6a8789, type: 2}
+  - {fileID: 11400000, guid: 43b7b22faf844d149ba5fd29f29e612f, type: 2}
+  - {fileID: 11400000, guid: 2a74251bd954c4b44b3b48a8b0fb4122, type: 2}

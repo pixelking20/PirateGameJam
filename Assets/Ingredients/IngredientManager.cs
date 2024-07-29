@@ -58,6 +58,12 @@ namespace Ingredients
                 {
                     var currentIngredient = currentPotion.IngredientList[j];
 
+
+                    if (currentIngredient.AlwaysCollected == true)
+                    {
+                        continue;
+                    }
+
                     //clears out collection, just in case
                     currentIngredient.collected = false;
 
