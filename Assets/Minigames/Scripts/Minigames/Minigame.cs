@@ -33,13 +33,21 @@ public abstract class Minigame : MonoBehaviour
     {
         return miniGameCamera;
     }
-    public void InitializeMiniGame()
+    public IEnumerator StartMiniGame()
     {
-        if (!thisMiniGameRunning)
-            StartCoroutine(MainCoroutine());
+        StartCoroutine(PlayMiniGame());
+        while (thisMiniGameRunning)
+        {
+            yield return new WaitForEndOfFrame();
+        }
     }
-    IEnumerator MainCoroutine()
+    IEnumerator PlayMiniGame()
     {
+        if (thisMiniGameRunning)
+        {
+            Debug.LogError("Cannot play more than one minigame at once! >.<");
+            yield break;
+        }
         minigameRunning = true;
         thisMiniGameRunning = true;
         PrepareMiniGame();
