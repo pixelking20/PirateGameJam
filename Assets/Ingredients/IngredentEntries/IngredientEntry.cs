@@ -10,6 +10,8 @@ namespace Ingredients
         [SerializeField]
         public IngredientsEnum Type;
 
+        public bool AlwaysCollected;
+
         [SerializeField]
         public string Name;
 

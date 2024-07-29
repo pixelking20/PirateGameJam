@@ -43,6 +43,12 @@ public class RecipeManager : MonoBehaviour
                     neededIngredients.Add(ingredient);
                     GameObject tempIngredientPrefab = Instantiate(textPrefab, ingredientPanel.transform);
                     tempIngredientPrefab.GetComponent<TextMeshProUGUI>().text = (" • " + ingredient.Name + " - " + ingredient.Description);
+
+                    if (ingredient.collected)
+                    {
+                        tempIngredientPrefab.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Strikethrough;
+                    }
+
                     ingredientDict.Add(ingredient.Type, tempIngredientPrefab);
                 }
                 foreach(GameObject source in sourceList) {
