@@ -11,7 +11,7 @@ public class MinigameExample : MonoBehaviour
     {
         if (!Minigame.minigameRunning && InputHandler.GetInput(Inputs.Interact,ButtonInfo.Press))
         {
-            minigame.InitializeMiniGame();
+            minigame.StartCoroutine(minigame.StartMiniGame());
             minigame.onMinigameComplete += OnMinigameComplete;
         }
     }
