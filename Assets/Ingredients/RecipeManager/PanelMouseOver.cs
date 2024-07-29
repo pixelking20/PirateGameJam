@@ -4,19 +4,24 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PanelMouseOver : MonoBehaviour
+public class PanelMouseOver : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
 {
     Animator animator;
-
+    bool mouseOver = false;
     private void Start() {
         animator = GetComponent<Animator>();
     }
 
     private void LateUpdate() {
-        animator.SetBool("MouseOver", IsMouseOverUI());
+        animator.SetBool("MouseOver", mouseOver);
+    }
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        mouseOver = true;
     }
 
-    private bool IsMouseOverUI() {
-        return EventSystem.current.IsPointerOverGameObject();
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        mouseOver = false;
     }
 }
