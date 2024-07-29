@@ -295,6 +295,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &876446132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 876446134}
+  - component: {fileID: 876446133}
+  m_Layer: 0
+  m_Name: DialogueExample
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &876446133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876446132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2795d31518d6334f9b9711a89a1f9d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueChain: {fileID: 11400000, guid: e4183142d22efea48ac6da1dece0258d, type: 2}
+--- !u!4 &876446134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 876446132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.64, y: 1.092, z: -2.6399999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +908,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinigameExample
       objectReference: {fileID: 0}
+    - target: {fileID: 7220007466919134123, guid: c56a6a5f27688d64dbfb2e31bc68ade3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8788057765349950535, guid: c56a6a5f27688d64dbfb2e31bc68ade3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.000000014901161
@@ -924,3 +973,4 @@ SceneRoots:
   - {fileID: 5357878603342622955}
   - {fileID: 6106054356414488040}
   - {fileID: 5962449658612241251}
+  - {fileID: 876446134}
