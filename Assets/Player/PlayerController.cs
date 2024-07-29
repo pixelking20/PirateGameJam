@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed = 2.5f;
     public float rotationSpeed = 200f;
+    public Animator animator;
 
     [Tooltip("Floor Layer")]
     [SerializeField] LayerMask floorMask;
@@ -43,6 +44,15 @@ public class PlayerController : MonoBehaviour
         if (!controlsLocked)
         {
             GetInput();
+
+            if(input != Vector3.zero) {
+                animator.SetBool("Walking", true);
+                animator.speed = 1.5f;
+            } else {
+                animator.SetBool("Walking", false);
+                animator.speed = 1f;
+            }
+
             transform.Rotate(new Vector3(0, input.x * rotationSpeed * Time.deltaTime, 0));
             controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
 
@@ -74,12 +84,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator Interact() {
+        controlsLocked = true;
+        animator.speed = 1f;
+        animator.SetTrigger("Interact");
+        yield return new WaitForSeconds(0.5f);
+        controlsLocked = false;
+    }
+
     void CheckForAvailableInteraction() {
         Debug.DrawRay(transform.position + Vector3.up, transform.forward, Color.green);
         if(Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, 1.5f, interactionMask)) {
             hit.transform.gameObject.SendMessage("Interact");
+            StartCoroutine(Interact());
         }
     }
+
     IEnumerator Respawn()
     {
         controlsLocked = true;
