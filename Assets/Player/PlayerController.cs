@@ -21,21 +21,37 @@ public class PlayerController : MonoBehaviour
 
     CharacterController controller;
 
+    Vector3 startingPos;
+    Quaternion startingRot;
+    Collider myCol;
+    [SerializeField]
+    DialogueChain onRespawnDialogue;
+    bool controlsLocked;
+    private void Awake()
+    {
+        startingPos = transform.position;
+        startingRot = transform.rotation;
+        myCol = transform.GetComponent<Collider>();
+    }
+
     void Start() {
         controller = gameObject.GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        GetInput();
-        transform.Rotate(new Vector3(0, input.x * rotationSpeed * Time.deltaTime, 0));
-        controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
-
-        bool interactPressed = InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press); //Can Check if any button was pressed, released, or held this frame.
-
-        if (interactPressed)
+        if (!controlsLocked)
         {
-            CheckForAvailableInteraction();
+            GetInput();
+            transform.Rotate(new Vector3(0, input.x * rotationSpeed * Time.deltaTime, 0));
+            controller.Move(transform.forward * input.z * moveSpeed * Time.deltaTime);
+
+            bool interactPressed = InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press); //Can Check if any button was pressed, released, or held this frame.
+
+            if (interactPressed)
+            {
+                CheckForAvailableInteraction();
+            }
         }
     }
 
@@ -64,8 +80,20 @@ public class PlayerController : MonoBehaviour
             hit.transform.gameObject.SendMessage("Interact");
         }
     }
+    IEnumerator Respawn()
+    {
+        controlsLocked = true;
+        myCol.enabled = false;
+        yield return TransitionCurtains.Transition(false);
+        transform.position = startingPos;
+        transform.rotation = startingRot;
+        myCol.enabled = true;
+        yield return TransitionCurtains.Transition(true);
+        yield return DialogueManager.HandleDialogueChain(onRespawnDialogue);
+        controlsLocked = false;
+    }
     public void GetHitByShadowMonster()
     {
-        print("Got hit by shadow monster");
+        StartCoroutine(Respawn());
     }
 }
