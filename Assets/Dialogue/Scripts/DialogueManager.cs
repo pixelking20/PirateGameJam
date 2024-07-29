@@ -6,7 +6,6 @@ using InputSystem;
 public class DialogueManager : MonoBehaviour
 {
     static DialogueManager instance;
-    static Coroutine currentChainRoutine;
 
     static bool currentlyRunning = false;
     private void Awake()
@@ -21,20 +20,25 @@ public class DialogueManager : MonoBehaviour
     {
         return currentlyRunning;
     }
-    public static void LoadNewDialogueChain(DialogueChain chain, System.Action callback = null)
-    {
+    //public static void LoadNewDialogueChain(DialogueChain chain, System.Action callback = null)
+    //{
 
-        if (!currentlyRunning)
-        {
-            currentChainRoutine = instance.StartCoroutine(instance.HandleDialogueChain(chain,callback));
-        }
-        else
+    //    if (!currentlyRunning)
+    //    {
+    //        instance.StartCoroutine(instance.HandleDialogueChain(chain,callback));
+    //    }
+    //    else
+    //    {
+            
+    //    }
+    //}
+    public static IEnumerator HandleDialogueChain(DialogueChain chain,System.Action callback = null)
+    {
+        if (currentlyRunning)
         {
             Debug.LogError("Cannot start new dialogue chain while running another! >.<");
+            yield break;
         }
-    }
-    IEnumerator HandleDialogueChain(DialogueChain chain,System.Action callback)
-    {
         currentlyRunning = true;
 
         int index = 0;

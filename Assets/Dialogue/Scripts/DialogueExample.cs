@@ -12,11 +12,16 @@ public class DialogueExample : MonoBehaviour
     {
         if (!DialogueManager.CheckIsDialogueRunning() && InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press))
         {
-            DialogueManager.LoadNewDialogueChain(dialogueChain,OnDialogueFinish);//Just give this function the DialogueChain, and a function to run once the dialogue chain is closed!
+            StartCoroutine(DialogueExampleCoroutine(dialogueChain));
         }
     }
     void OnDialogueFinish()
     {
         print("Dialogue Chain Finished!");
+    }
+    IEnumerator DialogueExampleCoroutine(DialogueChain chain)
+    {
+        yield return DialogueManager.HandleDialogueChain(chain);
+        OnDialogueFinish();
     }
 }

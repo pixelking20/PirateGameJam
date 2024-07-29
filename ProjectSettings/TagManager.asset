@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - RoomCamera
+  - IngredientList
+  - IngredientSource
   layers:
   - Default
   - TransparentFX
