@@ -12,10 +12,11 @@ public class TransitionCurtains : MonoBehaviour
     {
         if (instance)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
         instance = this;
         curtains = GetComponentInChildren<Image>();
+        DontDestroyOnLoad(gameObject);
     }
     public static IEnumerator Transition(bool curtainsOpen)
     {

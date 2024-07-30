@@ -15,7 +15,8 @@ public class MainMenuListener : BaseEventListener
         switch (namedEvent.NamedEventID)
         {
             case "StartGame":
-                SceneBlockManager.Instance.ChangeSceneBlock(SceneBlockEnum.DayOne);
+                SceneBlockManager.Instance.StartCoroutine(SceneBlockManager.Instance.ChangeScene(SceneBlockEnum.DayOne));
+                //SceneBlockManager.Instance.ChangeSceneBlock(SceneBlockEnum.DayOne);
                 break;
         }
     }

@@ -39,6 +39,20 @@ namespace SceneBlocks
 
             currentSceneIndex = 0;
         }
+        public IEnumerator ChangeScene(SceneBlockEnum setScene)
+        {
+            yield return TransitionCurtains.Transition(false);
+            print("Loading Scene");
+            SceneManager.LoadScene(Blocks[(int)setScene].Block[0]);
+
+            //This DID work, but it's unnescesary so I took it out
+            //AsyncOperation test = SceneManager.LoadSceneAsync(Blocks[(int)setScene].Block[0]);  
+            //yield return new WaitUntil(() => test.isDone);
+
+            print("Loaded Scene");
+            yield return TransitionCurtains.Transition(true);
+            print("End");
+        }
 
         /// <summary>
         /// Method to notify the Scene Manager to change scenes to the specified block
