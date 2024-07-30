@@ -73,6 +73,8 @@ namespace SceneBlocks
         /// <returns>An IEnumerator so that the start Coroutine can launch it</returns>
         private IEnumerator SceneChange(SceneBlockEnum newSceneValue)
         {
+            Time.timeScale = 0;
+
             var firstSceneTrigger = LoadSceneBlock(Blocks[(int)newSceneValue]);
 
             yield return firstSceneTrigger;
@@ -82,6 +84,8 @@ namespace SceneBlocks
             currentSceneIndex = newSceneValue;
 
             ActivelySwapping = false;
+
+            Time.timeScale = 1;
         }
 
         /// <summary>

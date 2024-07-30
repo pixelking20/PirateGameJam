@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9713c684d9489445b4a16e1ba266d5e, type: 3}
-  m_Name: SteelSpidersWeb
+  m_Script: {fileID: 11500000, guid: 8f3a7a5d95ca41c4e9452463b703e8df, type: 3}
+  m_Name: WinGameDailogueChainDay1
   m_EditorClassIdentifier: 
-  Type: 2
-  AlwaysCollected: 0
-  Name: Steel Spider's Web
-  Description: 
-  Room: 
-  collected: 0
-  prefab: {fileID: 81421277220676141, guid: 6e6dd59e41e63464cbf3662c6f6684bc, type: 3}
+  dialogues:
+  - {fileID: 11400000, guid: 3752899530e56e4458d8aa9bfe5034b2, type: 2}
