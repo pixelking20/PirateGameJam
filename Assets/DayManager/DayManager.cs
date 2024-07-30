@@ -48,8 +48,7 @@ namespace DayProgress
         public void NextDay()
         {
             DayNumber++;
-
-            SceneBlockManager.Instance.ChangeSceneBlock((SceneBlockEnum)DayNumber);
+            StartCoroutine(SceneBlockManager.Instance.ChangeScene((SceneBlockEnum)DayNumber));
         }
 
         public void SetDayRecipe()
