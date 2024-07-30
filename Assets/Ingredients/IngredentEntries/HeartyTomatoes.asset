@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: HeartyTomatoes
   m_EditorClassIdentifier: 
   Type: 1
+  AlwaysCollected: 0
   Name: Hearty Tomatoes
   Description: 
   Room: 
   collected: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 81421277220676141, guid: 0e4bc11ecb92abc40b98eca5fecd5c30, type: 3}

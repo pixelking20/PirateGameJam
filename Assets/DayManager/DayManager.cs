@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using SceneBlocks;
 
 namespace DayProgress
 {
@@ -33,8 +35,9 @@ namespace DayProgress
                 Debug.Log("There is already a copy of DayManager");
                 Destroy(this);
             }
+            Instance = this;
 
-            DayNumber = 0;
+            DayNumber = 1;
         }
 
         public void ForceSetDay(int  day)
@@ -46,7 +49,7 @@ namespace DayProgress
         {
             DayNumber++;
 
-            //call scene load
+            SceneBlockManager.Instance.ChangeSceneBlock((SceneBlockEnum)DayNumber);
         }
 
         public void SetDayRecipe()

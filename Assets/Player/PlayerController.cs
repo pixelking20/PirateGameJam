@@ -113,12 +113,13 @@ public class PlayerController : MonoBehaviour
         controlsLocked = false;
     }
 
-    public void LockControlsFromDialogue()
+    public void LockControls()
     {
+        Debug.Log("Controls locked");
         controlsLocked = true;
     }
 
-    public void UnlockControlsFromDialogue()
+    public void UnlockControls()
     {
         controlsLocked = false;
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using InputSystem;
+using DayProgress;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -14,10 +15,16 @@ public class MinigameManager : MonoBehaviour
 
     private void Update()
     {
-        if (InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press) && !minigameChainRunning)    
+        //commented out to be used inside the PlayerControlsTestScene. This unfortunately stops the sample scene from working
+        /*if (InputHandler.GetInput(Inputs.Interact, ButtonInfo.Press) && !minigameChainRunning)    
         {
             StartCoroutine(InitializeMinigameChain());
-        }
+        }*/
+    }
+
+    public void StartMinigames()
+    {
+        StartCoroutine(InitializeMinigameChain());
     }
     IEnumerator InitializeMinigameChain()
     {
@@ -44,6 +51,8 @@ public class MinigameManager : MonoBehaviour
 
         print("Minigame chain completed!");
         minigameChainRunning = false;
+
+        DayManager.Instance.NextDay();
 
         void WhenMinigameComplete(bool success)
         {

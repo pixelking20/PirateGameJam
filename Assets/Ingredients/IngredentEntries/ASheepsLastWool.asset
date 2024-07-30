@@ -18,4 +18,4 @@ MonoBehaviour:
   Description: 
   Room: 
   collected: 0
-  prefab: {fileID: 0}
+  prefab: {fileID: 81421277220676141, guid: d7f16f407d5d2084aa5b21dad53dbe1e, type: 3}
