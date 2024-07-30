@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3a7a5d95ca41c4e9452463b703e8df, type: 3}
+  m_Name: DogDay1
+  m_EditorClassIdentifier: 
+  dialogues:
+  - {fileID: 11400000, guid: af1ac6c95f479964193f0956abaa7905, type: 2}
+  - {fileID: 11400000, guid: dd7823409497c2f4dbc8c61eed816daa, type: 2}
+  - {fileID: 11400000, guid: df80f92ff9bc9064aa944c44c99b30e6, type: 2}
+  - {fileID: 11400000, guid: a10f47ae12fed664a9e295139507d351, type: 2}
+  - {fileID: 11400000, guid: 972dae5f9491b7648aa9d5cf3d314f29, type: 2}

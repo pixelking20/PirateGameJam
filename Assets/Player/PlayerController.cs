@@ -112,6 +112,16 @@ public class PlayerController : MonoBehaviour
         yield return DialogueManager.HandleDialogueChain(onRespawnDialogue);
         controlsLocked = false;
     }
+
+    public void LockControlsFromDialogue()
+    {
+        controlsLocked = true;
+    }
+
+    public void UnlockControlsFromDialogue()
+    {
+        controlsLocked = false;
+    }
     public void GetHitByShadowMonster()
     {
         StartCoroutine(Respawn());
