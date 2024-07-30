@@ -12,7 +12,8 @@ public class ShadowMan : MonoBehaviour
     [SerializeField]
     ShadowManTrackingArea[] rooms;
     int roomsInvoked = 0;
-    Vector3 startingPosition,expandPosition,retractPosition;
+    Vector3 startingPosition;
+    float collapsedSize = .005f;
     Transform visuals;
 
 
@@ -21,10 +22,6 @@ public class ShadowMan : MonoBehaviour
         startingPosition = transform.position;
 
         visuals = transform.Find("Visuals");
-        expandPosition = visuals.localPosition;
-        Transform retractedHolder = transform.Find("RetractedHolder");
-        retractPosition = retractedHolder.localPosition;
-        Destroy(retractedHolder.gameObject);
 
         pc = FindObjectOfType<PlayerController>();
 
@@ -32,8 +29,7 @@ public class ShadowMan : MonoBehaviour
         {
             room.onPlayerAreaChange += OnPlayerAreaChange;
         }
-
-        visuals.localPosition = retractPosition;
+        visuals.localScale = new Vector3(1, collapsedSize, 1);
     }
     void OnPlayerAreaChange(bool entering)
     {
@@ -52,12 +48,14 @@ public class ShadowMan : MonoBehaviour
     }
     IEnumerator Rise()
     {
-        float totalRange = (expandPosition - retractPosition).magnitude,distanceAlong = (retractPosition - visuals.localPosition).magnitude;
+        float totalRange = 1,distanceAlong = visuals.localScale.y;
         float moveTime = 1f, timeElapsed = Mathf.InverseLerp(0,totalRange,distanceAlong) * moveTime;
 
         while(timeElapsed < moveTime)
         {
-            visuals.localPosition = Vector3.Lerp(retractPosition, expandPosition, timeElapsed / moveTime);
+            visuals.forward = Vector3.ProjectOnPlane(pc.transform.position - transform.position, transform.up);
+
+            visuals.localScale = Vector3.Lerp(new Vector3(1, collapsedSize, 1), Vector3.one, timeElapsed / moveTime);
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -68,6 +66,7 @@ public class ShadowMan : MonoBehaviour
 
         while (true)
         {
+            visuals.forward = Vector3.ProjectOnPlane(pc.transform.position - transform.position, transform.up);
             Move(pc.transform.position);
             yield return new WaitForEndOfFrame();
         }
@@ -78,18 +77,24 @@ public class ShadowMan : MonoBehaviour
 
         while(true)
         {
-            Move(startingPosition);
+            if(transform.position != startingPosition)
+            {
+                visuals.forward = Vector3.ProjectOnPlane(startingPosition - transform.position, transform.up);
+                Move(startingPosition);
+            }
             yield return new WaitForEndOfFrame();
         }
     }
     IEnumerator Fall()
     {
-        float totalRange = (expandPosition - retractPosition).magnitude, distanceAlong = (expandPosition - visuals.localPosition).magnitude;
+        float totalRange = 1, distanceAlong = 1 - visuals.localScale.y;
         float moveTime = 1f, timeElapsed = Mathf.InverseLerp(0, totalRange, distanceAlong) * moveTime;
 
         while (timeElapsed < moveTime)
         {
-            visuals.localPosition = Vector3.Lerp(expandPosition, retractPosition, timeElapsed / moveTime);
+            visuals.forward = Vector3.ProjectOnPlane(pc.transform.position - transform.position, transform.up);
+
+            visuals.localScale = Vector3.Lerp(Vector3.one, new Vector3(1, collapsedSize, 1), timeElapsed / moveTime);
             timeElapsed += Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
